@@ -1,0 +1,139 @@
+trainer:
+  name: Watermark
+
+############################################################
+train_set:
+  name: ModelNetDataLoader
+  root: /data/xingyu/modelnet40_processed2500/
+  split: train
+  npoints: 2500
+  batch_size: 4
+  shuffle: True
+
+valid_set:
+  name: ModelNetDataLoader
+  root: /data/xingyu/modelnet40_processed2500/
+  split: test
+  npoints: 2500
+  batch_size: 1
+  shuffle: True
+
+# train_set:
+#   name: ShapeNetDataLoader
+#   root: /data_HDD/zhuxingyu/.dataset/shapenetcore2500
+#   split: train
+#   npoints: 2500
+#   batch_size: 4
+#   shuffle: True
+
+# valid_set:
+#   name: ShapeNetDataLoader
+#   root: /data_HDD/zhuxingyu/.dataset/shapenetcore2500
+#   split: test
+#   npoints: 2500
+#   batch_size: 4
+#   shuffle: True
+
+# train_set:
+#   name: ModelNetDataLoader
+#   root: /data_HDD/zhuxingyu/.dataset/modelnet40_processed500/
+#   split: train
+#   npoints: 500
+#   batch_size: 4
+#   shuffle: True
+
+# valid_set:
+#   name: ModelNetDataLoader
+#   root: /data_HDD/zhuxingyu/.dataset/modelnet40_processed500/
+#   split: test
+#   npoints: 500
+#   batch_size: 4
+#   shuffle: True
+
+# train_set:
+#   name: COCO
+#   root: /data_HDD/zhuxingyu/.dataset/coco2017/
+#   split: train
+#   batch_size: 4
+#   shuffle: True
+
+# valid_set:
+#   name: COCO
+#   root: /data_HDD/zhuxingyu/.dataset/coco2017/
+#   split: val
+#   batch_size: 4
+#   shuffle: True
+
+# train_set:
+#   name: HandsDataLoader
+#   root: /data_HDD/zhuxingyu/.dataset/hands_processed
+#   split: train
+#   npoints: 778
+#   batch_size: 16
+#   shuffle: True
+
+# valid_set:
+#   name: HandsDataLoader
+#   root: /data_HDD/zhuxingyu/.dataset/hands_processed
+#   split: test
+#   npoints: 778
+#   batch_size: 16
+#   shuffle: True
+
+############################################################
+
+scheduler:
+  name: StepLR
+  step_size: 100
+  gamma: 0.5
+
+channelae_ED:
+  name: MsgED
+
+############################################################
+# encoder_decoder:
+#   name: CNCED
+#   channel_size: 64
+
+# discriminator:
+#   name: CNCDiscriminator
+#   channel_size: 64
+
+# grouping_strategy:
+#   name: k_neighbor_query_func
+#   nsample: 9
+
+encoder_decoder:
+  name: GATED
+  channel_size: 64
+
+discriminator:
+  name: GATDiscriminator
+  channel_size: 64
+
+grouping_strategy:
+  name: graph_neighbor_query_func
+  nsample: 9
+############################################################
+
+encoder_block: 3
+decoder_block: 4
+discriminator_block: 4
+
+noise: 0.2
+ydim: 100
+vimco_samples: 5
+msg_length: 8
+lr: 0.001
+epoch: 500
+output_dir: .output/
+scale_size: 1
+
+
+channelae_checkpoint: ckpt/channelae.pth
+checkpoint: ckpt/GAT.pth
+
+fool_loss: 0.001
+xyz_loss: 2
+normal_loss: 0
+decoder_loss: 1

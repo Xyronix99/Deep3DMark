@@ -1,0 +1,13 @@
+#
+.idea
+
+#
+__pycache__
+build
+*.egg-info
+dist
+cmake-build-debug
+CMakeFiles
+
+#
+libtorch

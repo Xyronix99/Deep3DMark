@@ -1,0 +1,50 @@
+name: channelae8_0.2
+
+trainer:
+  name: ChannelAE
+
+train_set:
+  name: RandomBitsDataLoader
+  root: /data_HDD/zhuxingyu/.dataset/RandomBits
+  split: train
+
+  batch_size: 100
+  shuffle: True
+
+valid_set:
+  name: RandomBitsDataLoader
+  root: /data_HDD/zhuxingyu/.dataset/RandomBits
+  split: test
+
+# train_set:
+#   name: BinaryMNISTDataLoader
+#   root: /data_HDD/zhuxingyu/.dataset/BinaryMNIST
+#   split: train
+
+#   batch_size: 100
+#   shuffle: True
+
+# valid_set:
+#   name: BinaryMNISTDataLoader
+#   root: /data_HDD/zhuxingyu/.dataset/BinaryMNIST
+#   split: test
+
+  batch_size: 100
+  shuffle: True
+
+scheduler:
+  name: StepLR
+  step_size: 100
+  gamma: 0.5
+
+encoder_decoder:
+  name: MsgED
+
+noise: 0.2
+ydim: 100
+msg_length: 8
+vimco_samples: 5
+output_dir: .output/
+lr: 0.001
+epoch: 100
+checkpoint: False

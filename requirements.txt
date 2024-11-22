@@ -1,0 +1,12 @@
+mlconfig
+pyvista
+trimesh
+open3d
+hotelling
+scipy
+pyglet==1.5.29
+tqdm
+scikit-learn
+numpy
+GPUtil
+chamferdist

@@ -1,0 +1,9 @@
+__pycache__
+.vscode
+.output
+.idea
+libtorch
+cmake-build-debug
+*.egg-info
+build
+ckpt

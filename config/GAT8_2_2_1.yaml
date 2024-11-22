@@ -1,0 +1,58 @@
+trainer:
+  name: Watermark
+
+train_set:
+  name: ModelNetDataLoader
+  root: /data/xingyu/modelnet40_processed2500/
+  split: train
+  npoints: 2500
+  batch_size: 4
+  shuffle: True
+
+valid_set:
+  name: ModelNetDataLoader
+  root: /data/xingyu/modelnet40_processed2500/
+  split: test
+  npoints: 2500
+  batch_size: 4
+  shuffle: True
+
+scheduler:
+  name: StepLR
+  step_size: 1000
+  gamma: 0.5
+
+channelae_ED:
+  name: MsgED
+
+encoder_decoder:
+  name: GATED
+  channel_size: 64
+
+discriminator:
+  name: GATDiscriminator
+  channel_size: 64
+
+grouping_strategy:
+  name: graph_neighbor_query_func
+  nsample: 9
+
+encoder_block: 3
+decoder_block: 4
+discriminator_block: 4
+
+noise: 0.2
+ydim: 100
+vimco_samples: 5
+msg_length: 8
+scale_size: 1
+lr: 0.001
+epoch: 5000
+output_dir: .output/
+channelae_checkpoint: ckpt/channelae.pth
+checkpoint: False
+
+fool_loss: 0.001
+xyz_loss: 2
+normal_loss: 2
+decoder_loss: 1
